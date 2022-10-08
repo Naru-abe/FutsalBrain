@@ -1,0 +1,11 @@
+<div>
+  <video src="<%= rails_blob_path(@video.get_video) %>" type="video/mp4" controls></video>
+  <p>タイトル：<%= @video.title %></p>
+  <p>説明：<%= @video.caption %></p>
+  <p>ユーザーネーム：<%= @video.user.name %></p>
+  <p>投稿日：<%= @video.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @video.user == current_user %>
+    <%= link_to "編集", edit_video_path(@video) %>
+    <%= link_to "削除", video_path(@video), method: :delete %>
+  <% end %>
+</div>
