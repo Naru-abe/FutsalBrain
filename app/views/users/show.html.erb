@@ -15,5 +15,6 @@
   <p>タイトル：<%= video.title %></p>
   <p>説明：<%= video.caption %></p>
   <p>ユーザーネーム：<%= video.user.name %></p>
+  <p><%= link_to "#{video.comments.count} コメント", video_path(video.id) %></p>
 </div>
 <% end %>

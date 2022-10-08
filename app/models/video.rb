@@ -1,6 +1,7 @@
 class Video < ApplicationRecord
   has_one_attached :video
   belongs_to :user
+  has_many :comments, dependent: :destroy
   
   def get_video
     unless video.attached?
