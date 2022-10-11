@@ -6,8 +6,13 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(video_params)
     @video.user_id = current_user.id
-    @video.save
-    redirect_to @video
+    if @video.save
+      redirect_to @video
+      flash[:notice] = "投稿しました"
+    else
+      redirect_to new_video_path
+      flash[:notice] = "項目を入力してください"
+    end
   end
 
   def index
@@ -25,14 +30,20 @@ class VideosController < ApplicationController
 
   def update
     @video = Video.find(params[:id])
-    @video.update(video_params)
-    redirect_to @video
+    if @video.update(video_params)
+      redirect_to @video
+      flash[:notice] = "変更を完了しました"
+    else
+      redirect_to edit_video_path(@video)
+      flash[:notice] = "項目を入力してください"
+    end
   end
 
   def destroy
     @video = Video.find(params[:id])
     @video.destroy
     redirect_to videos_path
+    flash[:notice] = "投稿を削除しました"
   end
 
   private

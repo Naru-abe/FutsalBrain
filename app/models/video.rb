@@ -2,7 +2,11 @@ class Video < ApplicationRecord
   has_one_attached :video
   belongs_to :user
   has_many :comments, dependent: :destroy
-  
+
+  validates :title, presence: true
+  validates :caption, presence: true
+  validates :video, presence: true
+
   def get_video
     unless video.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

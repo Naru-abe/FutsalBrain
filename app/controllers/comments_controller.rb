@@ -3,8 +3,11 @@ class CommentsController < ApplicationController
     video = Video.find(params[:video_id])
     comment = current_user.comments.new(comment_params)
     comment.video_id = video.id
-    comment.save
-    redirect_to video_path(video)
+    if comment.save
+      redirect_to video_path(video)
+    else
+      render video_path(video)
+    end
   end
 
   def destroy
