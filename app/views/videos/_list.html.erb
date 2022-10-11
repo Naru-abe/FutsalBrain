@@ -1,11 +1,21 @@
-<% videos.each do |video| %>
-<div>
-  <%= link_to video_path(video.id) do %>
-    <video src="<%= rails_blob_path(video.get_video) %>" type="video/mp4" controls></video>
+<div class="card-list-container py-5">
+  <% videos.each do |video| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <%= link_to video_path(video.id) do %>
+      <video src="<%= rails_blob_path(video.get_video) %>" type="video/mp4" controls class="card-img-top"></video>
+    <% end %>
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <p class="card-title">
+            タイトル：<%= link_to video_path(video.id), class:"text-dark" do %> <%= video.title %> <% end %>
+          </p>
+          <p class="card-text">説明：<%= video.caption %></p>
+           <span><i class="fas fa-user"></i> By <%= video.user.name %> ｜ </span>
+          <span><%= link_to "#{video.comments.count} コメント", video_path(video.id), class:"text-dark" %></span>
+        </div>
+      </div>
+    </div>
+  </div>
   <% end %>
-  <p>タイトル：<%= video.title %></p>
-  <p>説明：<%= video.caption %></p>
-  <p>ユーザーネーム：<%= video.user.name %></p>
-  <p><%= link_to "#{video.comments.count} コメント", video_path(video.id) %></p>
 </div>
-<% end %>
