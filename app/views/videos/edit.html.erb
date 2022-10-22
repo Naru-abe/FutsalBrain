@@ -1,10 +1,16 @@
-<h1>投稿編集</h1>
+<div class="container">
+  <div class="row d-flex flex-column">
+    <h1 class="col">投稿編集</h1>
+    <div class="col">
 <%= form_with model: @video do |f| %>
   <h3>動画</h3>
     <%= f.file_field :video, accept: "video/*" %>
   <h4>タイトル</h4>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, rows: '2', placeholder: "タイトル", class: "col-md-10" %>
   <h4>説明</h4>
-    <%= f.text_area :caption %>
+    <%= f.text_area :caption, rows: '5', placeholder: "説明", class: "col-md-10" %>
   <%= f.submit '投稿' %>
 <% end %>
+    </div>
+  </div>
+</div>
