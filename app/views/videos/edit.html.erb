@@ -1,16 +1,21 @@
 <div class="container">
-  <div class="row d-flex flex-column">
-    <h1 class="col">投稿編集</h1>
-    <div class="col">
-<%= form_with model: @video do |f| %>
-  <h3>動画</h3>
-    <%= f.file_field :video, accept: "video/*" %>
-  <h4>タイトル</h4>
-    <%= f.text_field :title, rows: '2', placeholder: "タイトル", class: "col-md-10" %>
-  <h4>説明</h4>
-    <%= f.text_area :caption, rows: '5', placeholder: "説明", class: "col-md-10" %>
-  <%= f.submit '投稿' %>
-<% end %>
+  <div class="row no-gutters">
+    <div class="col-md-11 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h1 class="text-dark bg-light p-4 mb-0">投稿編集</h1>
+      <div class="form-body p-4">
+        <%= form_with model: @video do |f| %>
+          <%= f.file_field :video, accept: "video/*", class: "w-100" %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-futbol"></i></span>
+            </div>
+            <%= f.text_field :title, class:"form-control", placeholder:"タイトル" %>
+          </div>
+          <%= f.text_area :caption, class:"form-control", rows:"3", placeholder:"コメントここに" %>
+          <hr>
+          <%= f.submit '保存', class:"btn btn-lg btn-block btn-info mt-4" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
